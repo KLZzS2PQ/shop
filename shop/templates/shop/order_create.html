@@ -1,0 +1,46 @@
+{% extends "Core/base.html" %}
+{% load static %}
+{% block title %}Оформить заказ{% endblock %}
+{% block main %}
+    <div class="rounded-3 bg-white-2 p-2 position-relative
+    gap-2 product mx-auto mt-5"
+         style="width: 500px;
+                 background: linear-gradient(180deg,rgb(24,26,30) 0%,#{{ product.rarity.color }} 100%);">
+        <img src="{{ product.image.url }}" alt=""
+             class="w-100">
+        <div class="d-flex gap-1">
+            <span class="fs-3 fw-bold">{{ product.price }}</span>
+            <span class="fs-6 fw-bold text-danger ">-{{ product.discount }}%</span>
+        </div>
+        <h2 class="text-secondary fs-6 fw-light">{{ product.name }}</h2>
+        <form method="POST" action="" class="fcc gap-2">
+            {% csrf_token %}
+            <input type="text"
+                   name="delivery_address"
+                   class="form-control bg-transparent"
+                   placeholder="Enter delivery address"
+            >
+            <button class="w-100 frcc gap-2 bg-black bg-opacity-25
+        rounded-3 py-1 border-0" type="submit">
+                <img width="16" height="16"
+                     style="filter:invert(.9)"
+                     src="{% static 'Core/img/icons/plus.png' %}"
+                     alt="">
+                <span class="text-white text-decoration-none">Оформить
+                    заказ</span>
+            </button>
+        </form>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+{% extends "Core/base.html" %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'shop/css/product.css' %}">
+{% endblock %}
+{% block title %}Каталог{% endblock %}
+{% block main %}
+    <h1 class="text-center my-3">Каталог</h1>
+    <div class="d-flex gap-3 flex-wrap justify-content-center mx-auto"
+         style="max-width: 1000px">
+        {% for product in products %}
+            <div class="rounded-3 bg-white-2 p-2 position-relative gap-2 product"
+                 style="width: 200px;
+                         background: linear-gradient(180deg,rgb(24,26,30) 0%,#{{ product.rarity.color }} 100%);">
+                <img src="{{ product.image.url }}" alt=""
+                     class="w-100">
+                <div class="d-flex gap-1">
+                    <span class="fs-3 fw-bold">{{ product.price }}</span>
+                    <span class="fs-6 fw-bold text-danger ">-{{ product.discount }}%</span>
+                </div>
+                <h2 class="text-secondary fs-6 fw-light">{{ product.name }}</h2>
+                <div class="btn-product-detail position-absolute w-100 frcc gap-2">
+                    <img width="16" height="16"
+                         style="filter:invert(.9)"
+                         src="{% static 'Core/img/icons/plus.png' %}"
+                         alt="">
+                    <a href="{% url 'product_info' id=product.id %}"
+                       class="text-white text-decoration-none">Подробнее</a>
+                </div>
+                <div class="position-relative">
+                    <div style="left: 0; width: 100%; height: 100%; filter: grayscale(1)" class="position-absolute top-0 "></div>
+                    {% for i in 'fffff' %}
+                        {% if product.rating >= forloop.counter %}
+                            <img src="{% static 'Core/img/icons/star.png' %}"
+                                 alt="" height="18">
+                        {% else %}
+                            <img src="{% static 'Core/img/icons/star.png' %}"
+                                 alt="" height="18" style="filter: grayscale(1)">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

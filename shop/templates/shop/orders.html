@@ -1,0 +1,16 @@
+{% extends "Core/base.html" %}
+{% load static %}
+{% block title %}Заказы{% endblock %}
+{% block main %}
+    <h1 class="text-center my-2">Заказы</h1>
+    <div class="frc flex-wrap gap-3 ">
+        {% for order in orders %}
+            <div class="border-2 border border-secondary rounded-2 p-1"
+                 style="max-width: 250px;">
+                <span>{{ order.product.name }}</span>
+                <span>{{ order.delivery_address }}</span>
+                <span>{{ order.created_at }}</span>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
