@@ -20,7 +20,7 @@ def singup(request):
 
 def profile(request):
     if not request.user.is_authenticated:
-        return redirect('singin')
+        return  redirect('singin')
     return render(request, 'Core/auth/profile.html')
 
 
